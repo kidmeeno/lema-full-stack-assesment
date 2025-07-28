@@ -10,6 +10,7 @@ import UserPostsGrid from '../../components/UserPostsGrid';
 export default function PostsPage() {
   const { id } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleting, setIsDeleteing] = useState(false);
   const deletPost = useDeleteUserPost();
 
   const {
@@ -21,13 +22,16 @@ export default function PostsPage() {
   } = useGetPosts(id || '');
 
   const handleDeletePost = (postId: string) => {
+    setIsDeleteing(true)
     deletPost
       .mutateAsync(postId)
       .then(() => {
         refetch();
+        setIsDeleteing(false)
       })
-      .catch(() => {});
+      .catch(() => {setIsDeleteing(false)});
   };
+  const isCompLoading = isFetching||isDeleting
 
   if (isLoading) return <Loader />;
   if (error || !user)
@@ -48,8 +52,8 @@ export default function PostsPage() {
         {user.user.email} &bull;{' '}
         <span className='font-medium'>{user.posts.length} Posts</span>
       </p>
-      {isFetching && <Loader height='50vh' width='200px' />}
-      {!isFetching && (
+      {isCompLoading && <Loader height='50vh' width='200px' />}
+      {!isCompLoading && (
         <UserPostsGrid
           posts={user.posts}
           onDelete={handleDeletePost}
