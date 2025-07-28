@@ -3,6 +3,7 @@ import { Fragment, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { NewPostModalProps } from '../types';
+import { useCreateUserPost } from '../api/useCreatePost';
 
 export default function NewPostModal({
   isOpen,
@@ -12,21 +13,27 @@ export default function NewPostModal({
   const queryClient = useQueryClient();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [isLoading, setIsloading] = useState(false);
+  const createPost = useCreateUserPost(userId);
 
-  const { mutate, isLoading } = useMutation({
-    mutationFn: async () => {
-      await axios.post(`/api/users/${userId}/posts`, {
+  const handleCreatePost = () => {
+    setIsloading(true);
+    createPost
+      .mutateAsync({
         title,
         body: content,
+      })
+      .then(() => {
+        queryClient.invalidateQueries(['user-posts', userId]);
+        setTitle('');
+        setContent('');
+        setIsloading(false);
+        closeModal();
+      })
+      .catch(() => {
+        setIsloading(false);
       });
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(['user-posts', userId]);
-      setTitle('');
-      setContent('');
-      closeModal();
-    },
-  });
+  };
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -95,7 +102,7 @@ export default function NewPostModal({
                   </button>
                   <button
                     type='button'
-                    onClick={() => mutate()}
+                    onClick={() => handleCreatePost()}
                     disabled={!title || !content || isLoading}
                     className='px-4 py-2 rounded-md bg-primary-bg text-white disabled:opacity-50'
                   >

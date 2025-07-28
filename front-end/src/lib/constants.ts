@@ -8,6 +8,7 @@ export const ENDPOINTS = {
     USERS: "/users",
     GET_USER_POSTS: (id: string) => `/users/${id}/posts`,
     DELETE_POST: (id: string) => `/posts/${id}`,
+    CREATE_POST: (id: string) => `/users/${id}/posts`,
   },
 };
 
@@ -16,6 +17,7 @@ export const APP_KEYS = {};
 export const MUTATION_KEYS = {
   POST: {
     DELETE_POST: "DELETE_POST",
+    CREATE_POST: "CREATE_POST",
   },
 };
 
