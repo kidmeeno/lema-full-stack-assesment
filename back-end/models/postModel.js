@@ -1,4 +1,5 @@
 const db = require('../db');
+const { v4: uuidv4 } = require('uuid'); 
 
 exports.getPostsByUser = (userId, limit, offset) => {
   return db.prepare(`SELECT id, title, body FROM posts WHERE user_id = ? LIMIT ? OFFSET ?`).all(userId, limit, offset);
@@ -9,11 +10,15 @@ exports.getPostCountByUser = (userId) => {
 };
 
 exports.createPost = (userId, title, body) => {
+  const id = uuidv4(); // Generate UUID
+
   const stmt = db.prepare(`
-    INSERT INTO posts (user_id, title, body, created_at)
-    VALUES (?, ?, ?, datetime('now'))
+    INSERT INTO posts (id, user_id, title, body, created_at)
+    VALUES (?, ?, ?, ?, datetime('now'))
   `);
-  return stmt.run(userId, title, body).lastInsertRowid;
+
+  stmt.run(id, userId, title, body);
+  return id;
 };
 
 exports.getPostById = (id) => {
