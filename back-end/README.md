@@ -1,9 +1,9 @@
-## ✅ Backend: `backend/README.md`
-
-```markdown
+````markdown
 # 📦 Lema Backend API
 
 This is the backend service for the **Lema** project. It provides a simple RESTful API built with **Express.js** and **SQLite (better-sqlite3)**, responsible for user and post management.
+
+> 📁 This folder is part of a monorepo. See the [root README](../README.md) for fullstack setup (frontend + backend).
 
 ---
 
@@ -33,18 +33,18 @@ This is the backend service for the **Lema** project. It provides a simple RESTf
 
 > Base URL: `/api`
 
-| Method | Endpoint                     | Description                        |
-|--------|------------------------------|------------------------------------|
-| GET    | `/users?page=1&limit=4`      | Fetch paginated users + addresses |
-| GET    | `/users/:id/posts`           | Get a user's posts                 |
-| POST   | `/users/:id/posts`           | Add a post for a user              |
-| DELETE | `/posts/:postId`             | Delete a specific post             |
+| Method | Endpoint                | Description                        |
+|--------|-------------------------|------------------------------------|
+| GET    | `/users?page=1&limit=4` | Fetch paginated users + addresses |
+| GET    | `/users/:id/posts`      | Get a user's posts                 |
+| POST   | `/users/:id/posts`      | Add a post for a user              |
+| DELETE | `/posts/:postId`        | Delete a specific post             |
 
 ---
 
 ## 🌐 CORS Setup
 
-We’ve enabled CORS for the deployed frontend only:
+CORS is enabled for the deployed frontend domain only:
 
 ```js
 cors({
@@ -56,13 +56,12 @@ cors({
 
 ---
 
-## 🧑‍💻 Running Locally
+## 🧑‍💻 Running Locally (Backend Only)
 
-1. **Clone the repo**
+1. **Navigate to the backend directory**
 
 ```bash
-git clone [https://github.com/your-username/lema-backend.git](https://github.com/kidmeeno/lemaAssesmentBackend)
-cd lemaAssesmentBackend
+cd backend
 ```
 
 2. **Install dependencies**
@@ -71,7 +70,7 @@ cd lemaAssesmentBackend
 npm install
 ```
 
-3. **Ensure `data.db` is present** in the root.
+3. **Ensure `data.db` is present** in the root of the backend folder.
 
 4. **Run the server**
 
@@ -79,7 +78,7 @@ npm install
 npm run dev
 ```
 
-The API should be available at:
+API should be live at:
 `http://localhost:8080/api`
 
 ---
@@ -92,15 +91,17 @@ Deployed on **Render**
 To deploy:
 
 * Push to GitHub
-* Link repo to Render
-* Set build/start commands (just `npm install` and `npm start`)
+* Connect to Render
+* Set Build Command: `npm install`
+* Set Start Command: `npm start`
 
 ---
 
 ## 🧠 Notes
 
-* No authentication/authorization is added (for simplicity)
+* No authentication/authorization (for simplicity)
 * Assumes SQLite `data.db` is already seeded
+* Can be connected to the frontend in `/frontend`
 
 ---
 
@@ -108,4 +109,7 @@ To deploy:
 
 **Bosah Arthur**
 Email: [arthurbosah41@gmail.com](mailto:arthurbosah41@gmail.com)
-````
+
+---
+
+```

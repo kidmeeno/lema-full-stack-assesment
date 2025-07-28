@@ -1,9 +1,9 @@
-## 💻 Frontend: `frontend/README.md`
-
-```markdown
+````markdown
 # 💡 Lema Frontend (React)
 
 This is the frontend UI for the **Lema** platform — a user-post management interface built using **React**, **Vite**, and **Tailwind CSS**.
+
+> 📁 This folder is part of a monorepo. See the [root README](../README.md) for fullstack setup (frontend + backend).
 
 ---
 
@@ -50,7 +50,7 @@ npm test
 
 All data is fetched from the backend hosted at:
 
-```bash
+```
 https://lemaassesmentbackend.onrender.com
 ```
 
@@ -63,13 +63,12 @@ Endpoints used:
 
 ---
 
-## 🧑‍💻 Running Locally
+## 🧑‍💻 Running Locally (Frontend Only)
 
-1. **Clone the repo**
+1. **Navigate to frontend directory**
 
 ```bash
-git clone https://github.com/kidmeeno/lemaFrontend.git
-cd lemaFrontend
+cd frontend
 ```
 
 2. **Install dependencies**
@@ -84,7 +83,7 @@ npm install
 npm run dev
 ```
 
-Visit: `http://localhost:3000`
+App will be live at: `http://localhost:3000`
 
 ---
 
@@ -96,7 +95,7 @@ Deployed on **Vercel**
 To deploy:
 
 * Push to GitHub
-* Connect repo to Vercel
+* Connect the `frontend/` directory to Vercel
 * Set build command: `npm run build`
 * Set output directory: `dist`
 
@@ -106,16 +105,15 @@ To deploy:
 
 * All API requests use `axios` + `react-query`
 * Responsive grid for post cards (`min-[270px]`, max width handled via Tailwind)
-* CORS handled in backend for deployment
+* CORS configured in backend for deployed frontend
 
 ---
-
 
 ## 👨‍💼 Author
 
 **Bosah Arthur**
-GitHub: [kidmeeno]([https://github.com/jogndoe](https://github.com/kidmeeno))
-LinkedIn: [linkedin.com](https://www.linkedin.com/in/bosah-arthur-11316375/)
+GitHub: [kidmeeno](https://github.com/kidmeeno)
+LinkedIn: [Bosah Arthur](https://www.linkedin.com/in/bosah-arthur-11316375/)
 
 ---
 
