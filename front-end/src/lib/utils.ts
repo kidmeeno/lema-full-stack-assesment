@@ -25,3 +25,6 @@ export const generatePageNumbers = (current: number, total: number) => {
 
   return pages;
 };
+
+export const MAX_TITLE_CHAR_LENGHT = 80
+export const MAX_POST_CHAR_LENGHT = 500

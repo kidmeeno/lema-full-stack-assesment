@@ -1,23 +1,26 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 import { NewPostModalProps } from '../types';
 import { useCreateUserPost } from '../api/useCreatePost';
 import Loader from './Loader';
+import TextInputWithCount from './forms/TextInput';
+import TextAreaWithCount from './forms/TextArea';
+import { MAX_POST_CHAR_LENGHT, MAX_TITLE_CHAR_LENGHT } from '../lib/utils';
+
 
 export default function NewPostModal({
   isOpen,
   closeModal,
   userId,
 }: NewPostModalProps) {
-  const queryClient = useQueryClient();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [isLoading, setIsloading] = useState(false);
   const createPost = useCreateUserPost(userId);
+  const disableButton = !title || !content || isLoading;
 
   const handleCreatePost = () => {
+    if (title.length > MAX_TITLE_CHAR_LENGHT || content.length > MAX_POST_CHAR_LENGHT) return;
     setIsloading(true);
     createPost
       .mutateAsync({
@@ -25,7 +28,6 @@ export default function NewPostModal({
         body: content,
       })
       .then(() => {
-        queryClient.invalidateQueries(['user-posts', userId]);
         setTitle('');
         setContent('');
         setIsloading(false);
@@ -68,30 +70,25 @@ export default function NewPostModal({
                 </Dialog.Title>
 
                 <div className='mt-4'>
-                  <label className='block mb-2 text-lg text-gray-700 font-medium tracking-normal'>
-                    Post title
-                  </label>
-                  <input
-                    type='text'
+                  <TextInputWithCount
+                    label='Post title'
                     placeholder='Give your post a title'
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className='w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                    maxLength={MAX_TITLE_CHAR_LENGHT}
                   />
                 </div>
 
                 <div className='mt-4'>
-                  <label className='block mb-2 text-lg text-gray-700 font-medium tracking-normal'>
-                    Post content
-                  </label>
-                  <textarea
+                  <TextAreaWithCount
+                    label='Post content'
                     placeholder='Write something mind-blowing'
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    rows={5}
-                    className='w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                    maxLength={MAX_POST_CHAR_LENGHT}
                   />
                 </div>
+
 
                 <div className='mt-6 flex justify-end space-x-2'>
                   <button
@@ -103,14 +100,13 @@ export default function NewPostModal({
                   </button>
                   <button
                     type='button'
-                    onClick={() => handleCreatePost()}
-                    disabled={!title || !content || isLoading}
+                    onClick={handleCreatePost}
+                    disabled={disableButton}
                     className='px-4 py-2 rounded-md bg-primary-bg text-white disabled:opacity-50'
                   >
                     {isLoading ? (
                       <span className='flex items-center gap-2'>
-                        {'Publish'}
-                        <Loader height='20px' width='20px' />
+                        Publish <Loader height='20px' width='20px' />
                       </span>
                     ) : (
                       'Publish'
