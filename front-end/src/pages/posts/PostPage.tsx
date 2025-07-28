@@ -31,6 +31,11 @@ export default function PostsPage() {
       })
       .catch(() => {setIsDeleteing(false)});
   };
+
+  const handleCloseModal =()=>{
+    refetch()
+    setIsModalOpen(false);
+  }
   const isCompLoading = isFetching||isDeleting
 
   if (isLoading) return <Loader />;
@@ -62,7 +67,7 @@ export default function PostsPage() {
       )}
       <NewPostModal
         isOpen={isModalOpen}
-        closeModal={() => setIsModalOpen(false)}
+        closeModal={handleCloseModal}
         userId={user.user.id}
       />
     </div>
