@@ -5,7 +5,7 @@ const userRoutes = require('./routes/users');
 
 
 app.use(cors({
-  origin: '*',
+  origin: 'https://lema-full-stack-assesment.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
