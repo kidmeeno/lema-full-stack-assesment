@@ -12,7 +12,13 @@ export default function PostsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const deletPost = useDeleteUserPost();
 
-  const { data: user, error, refetch, isFetching } = useGetPosts(id || '');
+  const {
+    data: user,
+    error,
+    refetch,
+    isFetching,
+    isLoading,
+  } = useGetPosts(id || '');
 
   const handleDeletePost = (postId: string) => {
     deletPost
@@ -23,7 +29,7 @@ export default function PostsPage() {
       .catch(() => {});
   };
 
-  if (isFetching) return <Loader />;
+  if (isLoading) return <Loader />;
   if (error || !user)
     return <div className='p-6'>Failed to load user data.</div>;
 
@@ -42,12 +48,14 @@ export default function PostsPage() {
         {user.user.email} &bull;{' '}
         <span className='font-medium'>{user.posts.length} Posts</span>
       </p>
-
-      <UserPostsGrid
-        posts={user.posts}
-        onDelete={handleDeletePost}
-        onOpenNewPostModal={() => setIsModalOpen(true)}
-      />
+      {isFetching && <Loader height='50vh' width='200px' />}
+      {!isFetching && (
+        <UserPostsGrid
+          posts={user.posts}
+          onDelete={handleDeletePost}
+          onOpenNewPostModal={() => setIsModalOpen(true)}
+        />
+      )}
       <NewPostModal
         isOpen={isModalOpen}
         closeModal={() => setIsModalOpen(false)}
