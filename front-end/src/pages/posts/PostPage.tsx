@@ -12,12 +12,7 @@ export default function PostsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const deletPost = useDeleteUserPost();
 
-  const {
-    data: user,
-    error,
-    refetch,
-    isFetching,
-  } = useGetPosts(id || '');
+  const { data: user, error, refetch, isFetching } = useGetPosts(id || '');
 
   const handleDeletePost = (postId: string) => {
     deletPost

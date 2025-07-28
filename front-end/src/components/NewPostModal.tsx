@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { NewPostModalProps } from '../types';
 import { useCreateUserPost } from '../api/useCreatePost';
+import Loader from './Loader';
 
 export default function NewPostModal({
   isOpen,
@@ -106,7 +107,14 @@ export default function NewPostModal({
                     disabled={!title || !content || isLoading}
                     className='px-4 py-2 rounded-md bg-primary-bg text-white disabled:opacity-50'
                   >
-                    {isLoading ? 'Publishing...' : 'Publish'}
+                    {isLoading ? (
+                      <span className='flex items-center gap-2'>
+                        {'Publish'}
+                        <Loader height='20px' width='20px' />
+                      </span>
+                    ) : (
+                      'Publish'
+                    )}
                   </button>
                 </div>
               </Dialog.Panel>
