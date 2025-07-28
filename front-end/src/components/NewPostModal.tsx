@@ -55,12 +55,12 @@ export default function NewPostModal({
               leaveTo='opacity-0 scale-95'
             >
               <Dialog.Panel className='w-full max-w-md transform overflow-hidden rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all'>
-                <Dialog.Title className='text-[#181D27] text-[36px] leading-[72px] font-medium tracking-normal'>
+                <Dialog.Title className='text-primary-dacker text-4xl font-medium tracking-normal'>
                   New Post
                 </Dialog.Title>
 
                 <div className='mt-4'>
-                  <label className='block mb-2 text-sm text-gray-700 text-[18px] leading-[20px] font-medium tracking-normal'>
+                  <label className='block mb-2 text-lg text-gray-700 font-medium tracking-normal'>
                     Post title
                   </label>
                   <input
@@ -73,7 +73,7 @@ export default function NewPostModal({
                 </div>
 
                 <div className='mt-4'>
-                  <label className='block mb-2 text-sm text-gray-700 text-[18px] leading-[20px] font-medium tracking-normal'>
+                  <label className='block mb-2 text-lg text-gray-700 font-medium tracking-normal'>
                     Post content
                   </label>
                   <textarea
@@ -97,7 +97,7 @@ export default function NewPostModal({
                     type='button'
                     onClick={() => mutate()}
                     disabled={!title || !content || isLoading}
-                    className='px-4 py-2 rounded-md bg-[#334155] text-white hover:bg-indigo-700 disabled:opacity-50'
+                    className='px-4 py-2 rounded-md bg-primary-bg text-white disabled:opacity-50'
                   >
                     {isLoading ? 'Publishing...' : 'Publish'}
                   </button>

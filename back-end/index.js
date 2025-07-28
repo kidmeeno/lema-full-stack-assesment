@@ -5,7 +5,7 @@ const userRoutes = require('./routes/users');
 
 
 app.use(cors({
-  origin: 'https://lema-frontend-phi.vercel.app',
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));

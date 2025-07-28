@@ -10,6 +10,8 @@ module.exports = {
         'primary': '#535862',
         'secondary': '#7F56D9',
         'secondary-bg': '#F9F5FF',
+        'primary-dacker': '#181D27',
+        'primary-bg': '#334155',
       },
     },
   },
