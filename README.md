@@ -80,8 +80,8 @@ npm run dev
 
 ## 🌍 Deployed Links
 
-* 🔗 **Frontend:** [`https://lema-frontend-phi.vercel.app`](https://lema-frontend-phi.vercel.app)
-* 🔗 **Backend API:** [`https://lemaassesmentbackend.onrender.com`](https://lemaassesmentbackend.onrender.com)
+* 🔗 **Frontend:** [`https://lema-full-stack-assesment.vercel.app`](https://lema-full-stack-assesment.vercel.app)
+* 🔗 **Backend API:** [`https://lema-full-stack-assesment.onrender.com`](https://lema-full-stack-assesment.onrender.com)
 
 ---
 
