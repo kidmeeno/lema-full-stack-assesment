@@ -12,6 +12,7 @@ export default function NewPostModal({
   isOpen,
   closeModal,
   userId,
+  fetchPosts,
 }: NewPostModalProps) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -31,6 +32,7 @@ export default function NewPostModal({
         setTitle('');
         setContent('');
         setIsloading(false);
+        fetchPosts();
         closeModal();
       })
       .catch(() => {

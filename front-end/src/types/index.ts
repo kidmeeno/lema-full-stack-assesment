@@ -47,6 +47,7 @@ export interface UserPostsGridProps {
 export interface NewPostModalProps {
   isOpen: boolean;
   closeModal: () => void;
+  fetchPosts: () => void;
   userId: string;
 }
 
