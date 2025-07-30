@@ -12,13 +12,13 @@ const UserTable: React.FC<UserTableProps> = ({
       <table className='w-full  table-fixed'>
         <thead>
           <tr>
-            <th className='w-[30%] text-left overflow-hidden text-ellipsis  text-primary px-6 py-4 text-[14px] leading-[18px] font-medium tracking-normal font-inter'>
+            <th className='text-left overflow-hidden text-ellipsis  text-primary px-6 py-6 text-[14px] leading-[18px] font-medium tracking-normal font-inter'>
               Full Name
             </th>
-            <th className='w-[30%] text-left overflow-hidden text-ellipsis  text-primary px-6 py-4 text-[14px] leading-[18px] font-medium tracking-normal font-inter'>
+            <th className='text-left overflow-hidden text-ellipsis  text-primary px-6 py-6 text-[14px] leading-[18px] font-medium tracking-normal font-inter'>
               Email Address
             </th>
-            <th className='w-[392px] text-left text-primary px-6 py-4 text-[14px] leading-[18px] font-medium tracking-normal font-inter'>
+            <th className='w-[392px] text-left text-primary px-6 py-6 text-[14px] leading-[18px] font-medium tracking-normal font-inter'>
               Address
             </th>
           </tr>
@@ -27,7 +27,7 @@ const UserTable: React.FC<UserTableProps> = ({
           {isFetching && (
             <tr>
               <td colSpan={3} className='px-4 py-4 font-inter'>
-                <Loader height='200px' width='100%' />
+                <Loader height='250px' width='100%' />
               </td>
             </tr>
           )}
@@ -42,14 +42,14 @@ const UserTable: React.FC<UserTableProps> = ({
                   className='hover:bg-gray-50 cursor-pointer border-b border-b-gray-border'
                   onClick={() => onUserClick(user.id)}
                 >
-                  <td className='text-primary px-6 py-4 whitespace-nowrap overflow-hidden text-ellipsis text-sm leading-5 font-medium tracking-normal'>
+                  <td className='text-primary px-6 py-6 whitespace-nowrap overflow-hidden text-ellipsis text-sm leading-5 font-medium tracking-normal'>
                     {user.name}
                   </td>
-                  <td className='text-primary px-6 py-4 whitespace-nowrap overflow-hidden text-ellipsis text-sm leading-5 font-normal tracking-normal'>
+                  <td className='text-primary px-6 py-6 whitespace-nowrap overflow-hidden text-ellipsis text-sm leading-5 font-normal tracking-normal'>
                     {user.email}
                   </td>
                   <td
-                    className='text-primary px-6 py-4 whitespace-nowrap overflow-hidden text-ellipsis text-sm leading-5 font-normal tracking-normal'
+                    className='text-primary px-6 py-6 whitespace-nowrap overflow-hidden text-ellipsis text-sm leading-5 font-normal tracking-normal'
                     title={`${user.street}, ${user.state}, ${user.city}, ${user.zipcode}`}
                   >
                     {`${user.street}, ${user.state}, ${user.city}, ${user.zipcode}`}

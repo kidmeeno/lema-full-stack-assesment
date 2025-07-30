@@ -64,7 +64,7 @@ export default function NewPostModal({
               leaveFrom='opacity-100 scale-100'
               leaveTo='opacity-0 scale-95'
             >
-              <Dialog.Panel className='w-full max-w-md transform overflow-hidden rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all'>
+              <Dialog.Panel className='w-full max-w-[678px] sm:rounded-lg transform overflow-hidden rounded-md bg-white p-6 text-left align-middle shadow-xl transition-all'>
                 <Dialog.Title className='text-primary-dacker text-4xl font-medium tracking-normal'>
                   New Post
                 </Dialog.Title>

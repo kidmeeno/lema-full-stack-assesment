@@ -26,8 +26,9 @@ export interface PostsResponse {
 
 export type PaginationProps = {
   currentPage: number;
-  totalPages: number;
   onPageChange: (page: number) => void;
+  totalPages: number;
+  maxVisiblePages?: number;
 };
 
 

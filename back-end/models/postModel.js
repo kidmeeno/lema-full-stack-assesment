@@ -2,7 +2,13 @@ const db = require('../db');
 const { v4: uuidv4 } = require('uuid'); 
 
 exports.getPostsByUser = (userId, limit, offset) => {
-  return db.prepare(`SELECT id, title, body FROM posts WHERE user_id = ? LIMIT ? OFFSET ?`).all(userId, limit, offset);
+  return db.prepare(`
+    SELECT id, title, body, created_at
+    FROM posts
+    WHERE user_id = ?
+    ORDER BY created_at DESC
+    LIMIT ? OFFSET ?
+  `).all(userId, limit, offset);
 };
 
 exports.getPostCountByUser = (userId) => {
