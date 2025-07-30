@@ -16,7 +16,7 @@ exports.getPostCountByUser = (userId) => {
 };
 
 exports.createPost = (userId, title, body) => {
-  const id = uuidv4(); // Generate UUID
+  const id = uuidv4(); 
 
   const stmt = db.prepare(`
     INSERT INTO posts (id, user_id, title, body, created_at)
